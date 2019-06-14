@@ -1,8 +1,5 @@
 require 'rake'
 require 'rspec/core/rake_task'
-require "simplecov"
-
-SimpleCov.start
 
 RSpec::Core::RakeTask.new(:spec)
 task :default => :spec

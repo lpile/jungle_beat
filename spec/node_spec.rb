@@ -1,5 +1,4 @@
-require 'rspec'
-require './lib/node'
+require './spec/spec_helper'
 
 describe Node do
   before :each do
@@ -14,7 +13,7 @@ describe Node do
     expect(@node.data).to eq('plop')
     expect(@node.next_node).to eq(nil)
   end
-  
+
   it "if node is tail" do
     expect(@node.tail?).to eq(true)
 

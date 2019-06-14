@@ -1,6 +1,4 @@
-require 'rspec'
-require './lib/node'
-require './lib/linked_list'
+require './spec/spec_helper'
 
 describe LinkedList do
   before :each do
@@ -15,7 +13,7 @@ describe LinkedList do
     expect(@list.head).to eq(nil)
   end
 
-  it "can append" do
+  it "can .append" do
     @list.append("doop")
 
     expect(@list.head).to be_a(Node)
@@ -23,7 +21,7 @@ describe LinkedList do
     expect(@list.head.next_node).to eq(nil)
   end
 
-  it "can count" do
+  it "can .count" do
     expect(@list.count).to eq(0)
 
     @list.append("doop")
@@ -31,7 +29,9 @@ describe LinkedList do
     expect(@list.count).to eq(1)
   end
 
-  it "can to_string" do
+  it "can .to_string" do
+    expect(@list.to_string).to eq('')
+
     @list.append("doop")
 
     expect(@list.to_string).to eq('doop')
@@ -52,7 +52,7 @@ describe LinkedList do
     end
 
     it ".to_string displays both strings" do
-      expect(@list.to_string).to eq('doop deep')
+      expect(@list.to_string).to eq("#{@node_1.data} #{@node_2.data}")
     end
   end
 end
