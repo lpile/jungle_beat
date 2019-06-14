@@ -55,4 +55,66 @@ describe LinkedList do
       expect(@list.to_string).to eq("#{@node_1.data} #{@node_2.data}")
     end
   end
+
+  describe "can .prepend" do
+    it "which adds new node to front of linkedlist" do
+      @list.append("plop")
+      @list.append("suu")
+      @list.prepend("dop")
+
+      expect(@list.count).to eq(3)
+      expect(@list.to_string).to eq('dop plop suu')
+    end
+
+    it "could set head node if there's no nodes" do
+      @list.prepend("doop")
+
+      expect(@list.head).to be_a(Node)
+      expect(@list.head.data).to eq('doop')
+    end
+  end
+
+  describe "can .insert" do
+    it "which inserts new node any where within linkedlist" do
+      @list.append("plop")
+      @list.append("suu")
+      @list.prepend("dop")
+      @list.insert(1, "woo")
+
+      expect(@list.count).to eq(4)
+      expect(@list.to_string).to eq('dop woo plop suu')
+    end
+
+    it "could set head node if there's no nodes" do
+      @list.insert(1, "woo")
+
+      expect(@list.head).to be_a(Node)
+      expect(@list.head.data).to eq('woo')
+    end
+
+    describe "handle if there is < 2 nodes" do
+      it "if position is 0, set it as new head" do
+        @node_1 = @list.append("plop")
+        @node_2 = @list.insert(0, "woo")
+
+        expect(@list.head).to eq(@node_2)
+      end
+
+      it "if position is 1, set it as new head" do
+        @node_1 = @list.append("plop")
+        @node_2 = @list.insert(1, "woo")
+
+        expect(@list.head).to eq(@node_1)
+        expect(@list.head.next_node).to eq(@node_2)
+      end
+
+      it "if position > 1, set it after head" do
+        @node_1 = @list.append("plop")
+        @node_2 = @list.insert(2, "woo")
+
+        expect(@list.head).to eq(@node_1)
+        expect(@list.head.next_node).to eq(@node_2)
+      end
+    end
+  end
 end
