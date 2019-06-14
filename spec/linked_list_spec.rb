@@ -33,7 +33,26 @@ describe LinkedList do
 
   it "can to_string" do
     @list.append("doop")
-    
+
     expect(@list.to_string).to eq('doop')
+  end
+
+  describe "can add two nodes" do
+    before :each do
+      @node_1 = @list.append("doop")
+      @node_2 = @list.append("deep")
+    end
+
+    it "next node points to second node" do
+      expect(@list.head.next_node).to eq(@node_2)
+    end
+
+    it ".count is 2" do
+      expect(@list.count).to eq(2)
+    end
+
+    it ".to_string displays both strings" do
+      expect(@list.to_string).to eq('doop deep')
+    end
   end
 end
