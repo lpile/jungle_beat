@@ -14,4 +14,12 @@ describe Node do
     expect(@node.data).to eq('plop')
     expect(@node.next_node).to eq(nil)
   end
+  
+  it "if node is tail" do
+    expect(@node.tail?).to eq(true)
+
+    @node.next_node = 'flop'
+
+    expect(@node.tail?).to eq(false)
+  end
 end
