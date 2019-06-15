@@ -43,14 +43,18 @@ class LinkedList
     @head = node                 # resets head node
   end
 
-  def insert(position, string)
-    node = Node.new(string)
+  def insert(position, data)
+    node = Node.new(data)
     # find where to insert new node
     left_node = node_position(@head, position - 1)
     right_node = node_position(@head, position)
     # insert new node between left and right
     left_node.next_node = node
     node.next_node = right_node
+  end
+
+  def includes?(data)
+    node_include(@head, data)
   end
 
   private
@@ -69,5 +73,11 @@ class LinkedList
   def node_position(node, position, counter = 0)
     return node if position == counter
     node_position(node.next_node, position, counter += 1)
+  end
+
+  def node_include(node, data)
+    return true if node.data == data
+    return false if node.tail?
+    node_include(node.next_node, data)
   end
 end
