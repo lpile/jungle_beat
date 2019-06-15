@@ -7,6 +7,21 @@
 * Testing components in isolation and in combination
 * Use and implement iteration or recursion techniques
 
+## Drum Machine 101 – Making Sounds
+Go into your Terminal and try this:
+```
+$ say -r 500 "ding, dah, oom, oom, ding, oom, oom, oom, ding, dah, oom, oom, ding, dah, oom, oom, ding, dah, oom, oom "
+```
+
+Now try it from Ruby:
+```
+$ pry
+> `say -r 500 "ding, dah, oom, oom"`
+```
+Note that the backticks allow you to run terminal commands from within Ruby.
+
+The exact command that you need to run may differ based on what version of OS X you have installed on your computer. The commands above will work on 10.13
+
 ## Iteration Development
 ### Iteration 0: Node Basics
 
