@@ -1,72 +1,67 @@
 class LinkedList
-  attr_accessor :head
+  attr_accessor :head, :string
 
   def initialize
     @head = nil
     @string = ""
   end
 
-  def append(string)
-    if @head == nil            # sets head if there's no nodes
-      @head = Node.new(string)
-    else                       # sets next_node to point new node
-      @head.next_node = Node.new(string)
+  def empty?                     # checks if list is empty
+    @head.nil?
+  end
+
+  def tail_node(node)
+    if node.tail?                # finds last node
+      return node
+    else                         # recursion to find last node
+      tail_node(node.next_node)
+    end
+  end
+
+  def append(data)
+    node = Node.new(data)
+    if empty?                    # sets head if empty
+      @head = node
+    else                         # adds new node to list
+      tail_node(@head).next_node = node
     end
   end
 
   def count
-    return 0 if @head.nil?
-    node_counter(@head, 1)
+    return 0 if empty?           # returns 0 with empty
+    node_counter(@head)          # recursion for counter
   end
 
   def to_string
-    if @head.nil?              # returns empty string when there's no node
-      return ""
-    else                       # returns string of all nodes
-      node_string(@head)
-    end
+    return "" if @head.nil?      # returns empty string when empty
+    node_string(@head)           # returns string of all nodes
   end
 
-  def prepend(string)
-    if @head == nil            # sets head if there's no nodes
-      @head = Node.new(string)
-    else                       # sets new head node
-      node = Node.new(string)
-      node.next_node = @head   # sets next_node to point at old head node
-      @head = node             # resets head node
-    end
+  def prepend(data)
+    node = Node.new(data)        # sets new head node
+    node.next_node = @head       # sets next_node to point at old head node
+    @head = node                 # resets head node
   end
 
   def insert(position, string)
-    if @head == nil            # sets head if there's no nodes
-      @head = Node.new(string)
-    elsif count == 1           # places new node if there's only one node in linkedlist
-      if position == 0
-        prepend(string)
-      else
-        append(string)
-      end
-    else
-      node = Node.new(string)
-      # find where to insert new node
-      left_node = node_position(@head, position - 1)
-      right_node = node_position(@head, position)
-      # insert new node between left and right
-      left_node.next_node = node
-      node.next_node = right_node
-      return node
-    end
+    node = Node.new(string)
+    # find where to insert new node
+    left_node = node_position(@head, position - 1)
+    right_node = node_position(@head, position)
+    # insert new node between left and right
+    left_node.next_node = node
+    node.next_node = right_node
   end
 
   private
 
-  def node_counter(node, counter)
+  def node_counter(node, counter = 1)
     return counter if node.tail?
     node_counter(node.next_node, counter += 1)
   end
 
   def node_string(node)
-    @string += node.data + " "
+    @string += "#{node.data} "
     return @string.strip if node.tail?
     node_string(node.next_node)
   end
