@@ -1,9 +1,10 @@
 class LinkedList
-  attr_accessor :head, :string
+  attr_accessor :head, :string, :find_string
 
   def initialize
     @head = nil
     @string = ""
+    @find_string = ""
   end
 
   def empty?                     # checks if list is empty
@@ -53,13 +54,17 @@ class LinkedList
     node.next_node = right_node
   end
 
+  def find(start, amount)
+    start_node = node_position(@head, start)
+    node_find_string(start_node, amount)
+  end
+
   def includes?(data)
     node_include(@head, data)
   end
 
   def pop
     new_tail = node_position(@head, count - 2)
-    p new_tail.next_node.data
     new_tail.next_node = nil
   end
 
@@ -79,6 +84,12 @@ class LinkedList
   def node_position(node, position, counter = 0)
     return node if position == counter
     node_position(node.next_node, position, counter += 1)
+  end
+
+  def node_find_string(node, amount)
+    @find_string += "#{node.data} "
+    return @find_string.strip if amount == 1
+    node_find_string(node.next_node, amount -= 1)
   end
 
   def node_include(node, data)
