@@ -57,6 +57,12 @@ class LinkedList
     node_include(@head, data)
   end
 
+  def pop
+    new_tail = node_position(@head, count - 2)
+    p new_tail.next_node.data
+    new_tail.next_node = nil
+  end
+
   private
 
   def node_counter(node, counter = 1)
