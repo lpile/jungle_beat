@@ -2,7 +2,7 @@ require './spec/spec_helper'
 
 describe Node do
   before :each do
-    @node = Node.new('plop')
+    @node = Node.new('doop')
   end
 
   it 'exists' do
@@ -10,15 +10,17 @@ describe Node do
   end
 
   it 'has attributes' do
-    expect(@node.data).to eq('plop')
+    expect(@node.data).to eq('doop')
     expect(@node.next_node).to eq(nil)
   end
 
-  it "if node is tail" do
-    expect(@node.tail?).to eq(true)
+  describe "instance methods" do
+    it ".tail?" do
+      expect(@node.tail?).to eq(true)
 
-    @node.next_node = 'flop'
+      @node.next_node = 'deep'
 
-    expect(@node.tail?).to eq(false)
+      expect(@node.tail?).to eq(false)
+    end
   end
 end
