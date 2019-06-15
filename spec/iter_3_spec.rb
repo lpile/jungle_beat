@@ -29,8 +29,7 @@ describe 'Iteration 3 Spec:' do
   end
 end
 
-# edge cases:
-# how does prepend handle when list is empty
+# Edge Cases:
 # how does insert handle when list is empty
 # how does insert handle when list has one node
-# how does insert handle when list has more than one node
+# how does insert handle when is outside of list

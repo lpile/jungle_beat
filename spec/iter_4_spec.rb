@@ -38,6 +38,7 @@ describe 'Iteration 4 Spec:' do
   end
 end
 
-# edge cases:
-# how does find handle range outside list
+# Edge Cases:
 # how does pop handle range when list is empty
+# how does pop handle range when list is less than 2
+# how does find handle range outside list
